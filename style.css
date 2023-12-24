@@ -1,6 +1,100 @@
-html{
+body{
+    background-color: darkslategray;
+}
+/*Starting animation*/
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: black;
+    opacity: 1;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 9.5s linear forwards;
+  }
+  /*The text part*/
+  .center-text p{
+    text-align: center;
+    font-family: 'Source Code Pro', sans-serif;
+    color: white;
+    font-size: 24px;
+    position: relative;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; 
+    animation: 
+        typing 4s steps(40, end), /*Typing animation*/
+        blink-caret .75s step-end infinite, /*Cursor animation*/
+        fadeOut 8.22s linear forwards; /*Fade out animation*/
+  }
+  /*Progress bar stuff*/
+  .progress-bar-container {
+    width: 80%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    position: relative;
+    margin-top: 30px;
+    animation: 
+        fadeIn 4.5s linear forwards,
+        fadeOut 4s linear forwards 4s;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: white;
+    border-radius: 10px;
+    animation: 
+        fadeIn 4.5s linear forwards,
+        progressBar 3s linear forwards 4s,
+        fadeOut 4s linear forwards 4s;
+  }
+  /*animations*/
+  @keyframes fadeIn {/*fade in animation*/
+    0% {
+        opacity: 0;
+      }
+      90% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+  }
+  @keyframes progressBar {/*Progress bar animation to fill color*/  
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  @keyframes fadeOut {/*fade out animation*/
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+@keyframes typing {/* The typing effect */
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+@keyframes blink-caret {/* The typewriter cursor effect */
+    from, to { border-color: transparent }
+    50% { border-color: white; }
 }
-h1{
-    color:aliceblue;
-}
+  
