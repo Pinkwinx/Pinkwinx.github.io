@@ -19,9 +19,9 @@ body{
   }
   /*The text part*/
   .center-text{
-    display: flex;
+    display: flex !important;
     justify-content: center;
-    align-items: center;
+    align-items: center !important;
   }
   .center-text p{
     text-align: center;
@@ -32,13 +32,20 @@ body{
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */
     white-space: nowrap; /*Keeps the content on a single line*/
+    display: inline-block;
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em; 
+    word-wrap: break-all;
     animation: 
         typing 4s steps(40, end), /*Typing animation*/
         blink-caret .75s step-end infinite, /*Cursor animation*/
         fadeOut 8.22s linear forwards; /*Fade out animation*/
   }
+  @media screen and (max-width: 1200px) {
+    .center-text p {
+      font-size: 12px;
+    }
+}
   /*Progress bar stuff*/
   .progress-bar-container {
     width: 80%;
@@ -98,8 +105,7 @@ body{
 @keyframes typing {/* The typing effect */
     from { width: 0 }
     to { width: 100% }
-  }
-  
+}  
 @keyframes blink-caret {/* The typewriter cursor effect */
     from, to { border-color: transparent }
     50% { border-color: white; }
