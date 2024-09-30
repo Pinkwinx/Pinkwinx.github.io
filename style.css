@@ -1,113 +1,173 @@
-body{
-    background-color: darkslategray;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-/*Starting animation*/
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 1;
-    z-index: 9999;
-    display: flex;
+
+body {
+  background-color: rgb(20, 20, 20);
+  color: white;
+  font-family: 'Source Code Pro', sans-serif;
+  overflow-x: hidden; 
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  flex-wrap: wrap; 
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.name-title {
+  flex: 2;
+  text-align: center;
+}
+
+.name-title h1{
+  margin: 0;
+}
+
+.nav-links {
+  flex: 1;
+  text-align: right;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    animation: fadeOut 9.5s linear forwards;
   }
-  /*The text part*/
-  .center-text{
-    display: flex !important;
-    justify-content: center;
-    align-items: center !important;
-  }
-  .center-text p{
+  .nav-links {
     text-align: center;
-    font-family: 'Source Code Pro', sans-serif;
-    color: white;
-    font-size: 24px;
-    position: relative;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid white; /* The typwriter cursor */
-    white-space: nowrap; /*Keeps the content on a single line*/
-    display: inline-block;
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; 
-    word-wrap: break-all;
-    animation: 
-        typing 4s steps(40, end), /*Typing animation*/
-        blink-caret .75s step-end infinite, /*Cursor animation*/
-        fadeOut 8.22s linear forwards; /*Fade out animation*/
+    margin-top: 10px;
   }
-  @media screen and (max-width: 1200px) {
-    .center-text p {
-      font-size: 12px;
-    }
+  .nav-links a {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
-  /*Progress bar stuff*/
-  .progress-bar-container {
-    width: 80%;
-    height: 20px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    position: relative;
-    margin-top: 30px;
-    animation: 
-        fadeIn 4.5s linear forwards,
-        fadeOut 4s linear forwards 4s;
-  }
-  
-  .progress-bar {
-    height: 100%;
-    width: 0;
-    background-color: white;
-    border-radius: 10px;
-    animation: 
-        fadeIn 4.5s linear forwards,
-        progressBar 3s linear forwards 4s,
-        fadeOut 4s linear forwards 4s;
-  }
-  /*custom cursor*/
-  
-  /*animations*/
-  @keyframes fadeIn {/*fade in animation*/
-    0% {
-        opacity: 0;
-      }
-      90% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-  }
-  @keyframes progressBar {/*Progress bar animation to fill color*/  
-    0% {
-      width: 0%;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-  @keyframes fadeOut {/*fade out animation*/
-    0% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-@keyframes typing {/* The typing effect */
-    from { width: 0 }
-    to { width: 100% }
-}  
-@keyframes blink-caret {/* The typewriter cursor effect */
-    from, to { border-color: transparent }
-    50% { border-color: white; }
+
+/* Loading screen */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 1;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOut 9.5s linear forwards;
 }
-  
+
+.center-text {
+  display: flex !important;
+  justify-content: center;
+  align-items: center !important;
+}
+
+.center-text p {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  overflow: hidden;
+  border-right: .15em solid white;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, fadeOut 8.22s linear forwards;
+}
+
+@media screen and (max-width: 1200px) {
+  .center-text p {
+    font-size: 12px;
+  }
+}
+
+.progress-bar-container {
+  width: 80%;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  position: relative;
+  margin-top: 30px;
+  animation: fadeIn 4.5s linear forwards, fadeOut 4s linear forwards 4s;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: white;
+  border-radius: 10px;
+  animation: fadeIn 4.5s linear forwards, progressBar 3s linear forwards 4s, fadeOut 4s linear forwards 4s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  90% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes progressBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+body, .overlay {
+  cursor: url('path/to/custom-cursor.png'), auto;
+}
+
+.content {
+  opacity: 0;
+  animation: fadeInContent 1s forwards 9.5s;
+}
+
+@keyframes fadeInContent {
+  to { opacity: 1; }
+}
